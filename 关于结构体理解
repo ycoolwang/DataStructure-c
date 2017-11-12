@@ -69,3 +69,4 @@ typedef struct Teacher{
     c:31:13: error: request for member ‘name’ in something not a structure or union
      lishuang.name = "LiShuang";
 错误信息出现在每一处引用Lishuang成员处，这里只贴出一句，其余都是一个意思。结构体指针访问成员的方式由‘.’更改为‘->’，错误消除。
+需要注意的是，结构体指针在使用之前一定要指向一个确定的结构体，不可以只声明然后就使用，这回导致出现段错误。
