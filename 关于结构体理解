@@ -1,0 +1,71 @@
+结构体的基本定义方法：
+struct Student{
+        char *name;
+        int id;
+        char gender;
+    };
+    
+使用结构体的方法：
+struct Student xiaoming;
+结构体成员访问方法：
+xiaoming.name = "XiaoMing";
+xiaoming.id = 1101348;
+xiaoming.gender = 'F';
+
+使用typedef定义结构体的方法：
+typedef struct Teacher{
+        char *name;
+        int id;
+        char gender;
+    }myteacher, yourteacher;
+这种定义方法等同于结构体基本定义方法外加typedef两步合成一步。
+也就是可以写成：
+struct Teacher{
+        char *name;
+        int id;
+        char gender;
+    };
+typedef struct Teacher myteacher;
+typedef struct Teacher yourteacher;
+结构体的访问方法与上一种并无差异，如下：
+    myteacher lilei;
+    yourteacher lishuang;
+
+    lilei.name = "Lilei";
+    lilei.id = 10335;
+    lilei.gender = 'F';
+
+    lishuang.name = "LiShuang";
+    lishuang.id = 10225;
+    lishuang.gender = 'M';
+结构体的访问有两种形式，通过结构体名和通过结构体指针，前面的代码均是采用结构体名进行访问的，典型的特点时结构体+‘.’+结构体成员进行访问，
+通过结构体指针进行访问的方法，其典型特点时结构体+‘->’+成员进行访问，下面给出通过结构体名和结构体指针进行访问的代码。
+typedef struct Teacher{
+        char *name;
+        int id;
+        char gender;
+    }myteacher, *yourteacher;
+    
+    myteacher lilei;
+    yourteacher lishuang;
+
+    lilei.name = "Lilei";
+    lilei.id = 10335;
+    lilei.gender = 'F';
+
+    lishuang.name = "LiShuang";
+    lishuang.id = 10225;
+    lishuang.gender = 'M';
+
+    printf("Teacher's name is:%s\n",lilei.name);
+    printf("Teacher's id is:%d\n",lilei.id);
+    printf("Teacher's gender is:%c\n",lilei.gender;
+
+    printf("Teacher's name is:%s\n",lishuang.name);
+    printf("Teacher's id is:%d\n",lishuang.id);
+    printf("Teacher's gender is:%c\n",lishuang.gender);
+    
+编译运行会报错，错误信息如下：
+    c:31:13: error: request for member ‘name’ in something not a structure or union
+     lishuang.name = "LiShuang";
+错误信息出现在每一处引用Lishuang成员处，这里只贴出一句，其余都是一个意思。结构体指针访问成员的方式由‘.’更改为‘->’，错误消除。
